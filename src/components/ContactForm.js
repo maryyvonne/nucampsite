@@ -20,7 +20,7 @@ const ContactForm = () => {
         contactType: 'By Phone',
         feedback: ""
       }}
-      onsubmit={handleSubmit}
+      onSubmit={handleSubmit}
       validate={validateContactForm}
     >
       <Form>
