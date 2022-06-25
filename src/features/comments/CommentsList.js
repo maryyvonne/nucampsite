@@ -1,4 +1,5 @@
-import { Col } from 'reactstrap';import Comment from './Comment';import { selectCommentsByCampsiteId } from './commentsSlice';
+import { Col } from 'reactstrap';import Comment from './Comment';import CommentForm from './CommentForm';
+import { selectCommentsByCampsiteId } from './commentsSlice';
 const CommentsList = ({ campsiteId }) => {    const comments = selectCommentsByCampsiteId(campsiteId);
 
     if (comments && comments.length > 0) {
@@ -8,6 +9,7 @@ const CommentsList = ({ campsiteId }) => {    const comments = selectCommentsByC
                 {comments.map((comment) => {
                     return <Comment key={comment.id} comment={comment} />;
                 })}
+                <CommentForm campsiteId={campsiteId}/>
             </Col>
         );
     }
