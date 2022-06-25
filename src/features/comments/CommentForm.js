@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Button, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { Formik, Field, Form } from 'formik';
+import { Button, Form, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { ErrorMessage, Formik, Field,  } from 'formik';
+import { validateCommentForm } from '../../utils/validateCommentForm';
+
 
 const CommentForm= ({ campsiteId }) => {
   const [ modalOpen, setModalOpen ] = useState(false);
@@ -17,7 +19,7 @@ const CommentForm= ({ campsiteId }) => {
   return (
     <>
       <Button 
-        bool='outline'
+        outline
         onClick={() => setModalOpen(true)}>
           <i className='fa fa-pencil fa-lg' /> Add Comment
       </Button>
@@ -30,7 +32,9 @@ const CommentForm= ({ campsiteId }) => {
               author: '',
               commentText: ''
             }}
-            onSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+            validate={validateCommentForm}
+            >
               <Form>
                 <FormGroup>
                   <Label htmlFor='rating'>Rating</Label>
@@ -46,6 +50,9 @@ const CommentForm= ({ campsiteId }) => {
                     <option>4</option>
                     <option>5</option>
                   </Field>
+                  <ErrorMessage name='rating'>
+                    {(msg) => <p className='text-danger'>{msg}</p>}
+                  </ErrorMessage>
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor='author'>Your Name</Label>
@@ -54,6 +61,9 @@ const CommentForm= ({ campsiteId }) => {
                     className='form-control'              
                   >
                   </Field>
+                  <ErrorMessage name='author'>
+                    {(msg) => <p className='text-danger'>{msg}</p>}
+                  </ErrorMessage>
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor='commentText'>Comment</Label>
