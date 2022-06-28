@@ -57,7 +57,7 @@ const CommentForm= ({ campsiteId }) => {
                 <FormGroup>
                   <Label htmlFor='author'>Your Name</Label>
                   <Field
-                    name='author'                                         placeholder='Your Name' 
+                    name='author'                                   placeholder='Your Name' 
                     className='form-control'              
                   >
                   </Field>
